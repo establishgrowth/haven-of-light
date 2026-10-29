@@ -20,6 +20,19 @@ a{color:#12304F}a:hover{color:#0A1F36}
 .amt{font-family:'Marcellus',serif;font-size:28px;border-radius:16px;min-height:64px;padding:16px}
 .seg{border:none;background:transparent;padding:12px}
 .pill:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #F2B544;outline-offset:2px}
+.spheres{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.spheres>li{display:flex}
+.sph{font:inherit;cursor:pointer;width:100%;background:#FFFFFF;border:1px solid #D5E2EF;border-radius:18px;padding:22px 12px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.sph .ic{transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.sph:hover,.sph:focus-visible,.sph[aria-pressed="true"]{transform:translateY(-6px);box-shadow:0 14px 30px rgba(18,48,79,.16);border-color:#9FB4CA}
+.sph:hover .ic,.sph:focus-visible .ic,.sph[aria-pressed="true"] .ic{transform:scale(1.2)}
+.sph[aria-pressed="true"]{border-color:#12304F;border-width:2px}
+.sphcore{font:inherit;cursor:pointer;width:100%;border:none;background:#12304F;color:#FFFFFF;border-radius:22px;padding:32px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px}
+.sph:focus-visible,.sphcore:focus-visible{outline:3px solid #F2B544;outline-offset:3px}
+.sphpanel-in{animation:sphin .35s ease}
+@keyframes sphin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (max-width:760px){.spheres{grid-template-columns:repeat(2,minmax(0,1fr))}.spheres>li{grid-column:auto !important;grid-row:auto !important}.spheres>li.core{grid-column:1 / -1 !important}.sphpanel{order:-1;min-height:0 !important}}
+@media (prefers-reduced-motion:reduce){.sph,.sph .ic{transition:none}.sph:hover,.sph[aria-pressed="true"],.sph:focus-visible{transform:none}.sph:hover .ic,.sph[aria-pressed="true"] .ic{transform:none}.sphpanel-in{animation:none}}
 </style>
 </head>
 <body>
@@ -130,63 +143,223 @@ a{color:#12304F}a:hover{color:#0A1F36}
 </div>
 </section>
 
-<section style="background: #12304F; color: #FFFFFF">
-<div style="max-width: 1240px; margin: 0 auto; padding: 88px 24px">
-<div style="display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: end">
-<div style="max-width: 700px">
-<p style="margin: 0; font-size: 15px; letter-spacing: 0.16em; text-transform: uppercase; color: #F2C66D; font-weight: 700">Project</p>
-<h2 style="margin: 10px 0 0; font-family: 'Marcellus', serif; font-weight: 400; font-size: 44px; line-height: 1.15">12 spheres of influence</h2>
-<p style="margin: 16px 0 0; color: #D9E6F3">Each of us lives within areas of life where we meet others: family, community, work and more. Rooted in faith, values, beliefs and traditions, this project looks at 12 of them as places where good things can happen.</p>
+<section id="spheres" style="background: #F6F9FC; border-top: 1px solid #DCE7F2; border-bottom: 1px solid #DCE7F2">
+<div style="max-width: 1240px; margin: 0 auto; padding: 96px 24px">
+<p style="margin: 0; font-size: 15px; letter-spacing: 0.16em; text-transform: uppercase; color: #9A6A10; font-weight: 700">Project</p>
+<h2 style="margin: 10px 0 0; font-family: 'Marcellus', serif; font-weight: 400; font-size: 44px; color: #12304F; line-height: 1.15">12 spheres of influence</h2>
+<div class="sphrow" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; margin-top: 40px">
+<ul class="spheres" aria-label="The 12 spheres of influence" style="flex: 3 1 620px; min-width: 0; list-style: none; margin: 0; padding: 0">
+<li class="core" style="grid-column: 2 / 4; grid-row: 2 / 4"><button type="button" class="sphcore" data-k="intro">
+<span style="font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: #F2C66D; font-weight: 700">At the centre</span>
+<span style="font-family: 'Marcellus', serif; font-size: 30px; line-height: 1.2">Faith &amp; Values</span>
+<span style="font-family: 'Marcellus', serif; font-size: 30px; line-height: 1.2">Beliefs &amp; Traditions</span>
+<span style="color: #D9E6F3; font-size: 17px; max-width: 300px">The core each of us acts from, shaping how we live and lead in every sphere.</span>
+</button></li>
+<li style="grid-column: 1; grid-row: 1"><button type="button" class="sph" aria-pressed="false" data-k="justice">
+<span class="ic" style="width: 64px; height: 64px; border-radius: 999px; background: #2B7F8C; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"></path></svg></span>
+<span style="font-size: 17px; font-weight: 700; color: #12304F; line-height: 1.3">Global Justice &amp; Human Rights</span>
+</button></li>
+<li style="grid-column: 2; grid-row: 1"><button type="button" class="sph" aria-pressed="false" data-k="family">
+<span class="ic" style="width: 64px; height: 64px; border-radius: 999px; background: #D9662A; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="7" r="3"></circle><circle cx="16.5" cy="8.5" r="2.5"></circle><path d="M3 20v-2a5 5 0 0 1 10 0v2"></path><path d="M14 20v-1.5a3.5 3.5 0 0 1 7 0V20"></path></svg></span>
+<span style="font-size: 17px; font-weight: 700; color: #12304F; line-height: 1.3">Family</span>
+</button></li>
+<li style="grid-column: 3; grid-row: 1"><button type="button" class="sph" aria-pressed="false" data-k="community">
+<span class="ic" style="width: 64px; height: 64px; border-radius: 999px; background: #3F8A3F; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3"></circle><circle cx="5" cy="9" r="2"></circle><circle cx="19" cy="9" r="2"></circle><path d="M7 20v-2a5 5 0 0 1 10 0v2"></path><path d="M2 19v-1a3 3 0 0 1 4-2.8"></path><path d="M22 19v-1a3 3 0 0 0-4-2.8"></path></svg></span>
+<span style="font-size: 17px; font-weight: 700; color: #12304F; line-height: 1.3">Community</span>
+</button></li>
+<li style="grid-column: 4; grid-row: 1"><button type="button" class="sph" aria-pressed="false" data-k="education">
+<span class="ic" style="width: 64px; height: 64px; border-radius: 999px; background: #1D4A68; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h6a4 4 0 0 1 4 4v11a3 3 0 0 0-3-3H2z"></path><path d="M22 5h-6a4 4 0 0 0-4 4v11a3 3 0 0 1 3-3h7z"></path></svg></span>
+<span style="font-size: 17px; font-weight: 700; color: #12304F; line-height: 1.3">Education &amp; Learning</span>
+</button></li>
+<li style="grid-column: 4; grid-row: 2"><button type="button" class="sph" aria-pressed="false" data-k="medicine">
+<span class="ic" style="width: 64px; height: 64px; border-radius: 999px; background: #B83A2E; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"></path></svg></span>
+<span style="font-size: 17px; font-weight: 700; color: #12304F; line-height: 1.3">Medicine &amp; Healthcare</span>
+</button></li>
+<li style="grid-column: 4; grid-row: 3"><button type="button" class="sph" aria-pressed="false" data-k="sport">
+<span class="ic" style="width: 64px; height: 64px; border-radius: 999px; background: #B7860F; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5l4 2.9-1.5 4.6h-5L8 10.4z"></path><path d="M12 3v4.5M20.5 9.5l-4.5.9M3.5 9.5l4.5.9M7 19.5l2.5-4.5M17 19.5l-2.5-4.5"></path></svg></span>
+<span style="font-size: 17px; font-weight: 700; color: #12304F; line-height: 1.3">Sport &amp; Leisure</span>
+</button></li>
+<li style="grid-column: 4; grid-row: 4"><button type="button" class="sph" aria-pressed="false" data-k="arts">
+<span class="ic" style="width: 64px; height: 64px; border-radius: 999px; background: #74449A; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.5 0 2-1 2-2s-1-1.5-1-2.5 1-1.5 2-1.5h2a4 4 0 0 0 4-4c0-4.5-4-8-9-8z"></path><circle cx="7.5" cy="11" r="1"></circle><circle cx="10" cy="7" r="1"></circle><circle cx="15" cy="7.5" r="1"></circle></svg></span>
+<span style="font-size: 17px; font-weight: 700; color: #12304F; line-height: 1.3">Arts &amp; Entertainment</span>
+</button></li>
+<li style="grid-column: 3; grid-row: 4"><button type="button" class="sph" aria-pressed="false" data-k="environment">
+<span class="ic" style="width: 64px; height: 64px; border-radius: 999px; background: #3F8A3F; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20c0-8 5-14 15-15-1 10-6 15-14 15"></path><path d="M5 20c3-4 6-7 10-9"></path></svg></span>
+<span style="font-size: 17px; font-weight: 700; color: #12304F; line-height: 1.3">Environment</span>
+</button></li>
+<li style="grid-column: 2; grid-row: 4"><button type="button" class="sph" aria-pressed="false" data-k="government">
+<span class="ic" style="width: 64px; height: 64px; border-radius: 999px; background: #1D4A68; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"></path><path d="M5 10v8M9.5 10v8M14.5 10v8M19 10v8"></path><path d="M3 21h18"></path></svg></span>
+<span style="font-size: 17px; font-weight: 700; color: #12304F; line-height: 1.3">Government &amp; State</span>
+</button></li>
+<li style="grid-column: 1; grid-row: 4"><button type="button" class="sph" aria-pressed="false" data-k="media">
+<span class="ic" style="width: 64px; height: 64px; border-radius: 999px; background: #D9662A; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 3l4 4 4-4"></path></svg></span>
+<span style="font-size: 17px; font-weight: 700; color: #12304F; line-height: 1.3">Communication &amp; Media</span>
+</button></li>
+<li style="grid-column: 1; grid-row: 3"><button type="button" class="sph" aria-pressed="false" data-k="economics">
+<span class="ic" style="width: 64px; height: 64px; border-radius: 999px; background: #1F6B4A; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"></path><path d="M7 17v-3M11 17v-5M15 17v-4M19 17v-7"></path><path d="M4 10l5-4 4 3 6-5"></path><path d="M16 4h3v3"></path></svg></span>
+<span style="font-size: 17px; font-weight: 700; color: #12304F; line-height: 1.3">Economics &amp; Business</span>
+</button></li>
+<li style="grid-column: 1; grid-row: 2"><button type="button" class="sph" aria-pressed="false" data-k="science">
+<span class="ic" style="width: 64px; height: 64px; border-radius: 999px; background: #2B7F8C; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1.5"></circle><ellipse cx="12" cy="12" rx="10" ry="4"></ellipse><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"></ellipse><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"></ellipse></svg></span>
+<span style="font-size: 17px; font-weight: 700; color: #12304F; line-height: 1.3">Science &amp; Technology</span>
+</button></li>
+</ul>
+<div class="sphpanel" id="sph-panel" aria-live="polite" style="flex: 2 1 340px; min-width: 0; background: #FFFFFF; border: 1px solid #D5E2EF; border-radius: 22px; padding: 36px; min-height: 520px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; gap: 28px">
+<div>
+<div data-panel="intro">
+<div class="sphpanel-in" style="display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font-size: 22px; font-weight: 700; color: #12304F; line-height: 1.35">Everyone has the potential to make a real difference!</p>
+<p style="margin: 0; color: #33445A">Starting from faith and values, beliefs and traditions, we look at 12 spheres of influence. These are areas of life where we find ourselves, and where we can be part of transformational change.</p>
+<p style="margin: 0; color: #33445A">Some spheres are large, like family or community. Others overlap. Each one is a place where good things can happen.</p>
+<p style="margin: 0; display: flex; gap: 10px; align-items: center; color: #9A6A10; font-weight: 700"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V5a2 2 0 0 1 4 0v6"></path><path d="M13 10a2 2 0 0 1 4 0v1a2 2 0 0 1 4 0v4a7 7 0 0 1-7 7h-1a7 7 0 0 1-6-3.5L4 14a2 2 0 0 1 3.4-2L9 14"></path></svg>Hover over or tap a sphere to explore it.</p>
 </div>
 </div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 40px">
-<div style="border: 1px solid #2D4D70; border-radius: 14px; padding: 18px; display: flex; gap: 12px; align-items: baseline">
-<span style="font-family: 'Marcellus', serif; color: #F2C66D; font-size: 20px">01</span>
-<span style="color: #FFFFFF">[Family]</span>
+<div data-panel="justice" hidden>
+<div class="sphpanel-in" style="display: flex; flex-direction: column; gap: 16px">
+<span style="width: 88px; height: 88px; border-radius: 999px; background: #2B7F8C; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"></path></svg></span>
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: #4A5A6E; font-weight: 700">Sphere 01 of 12</p>
+<h3 style="margin: -8px 0 0; font-family: 'Marcellus', serif; font-weight: 400; font-size: 36px; line-height: 1.15; color: #12304F">Global Justice &amp; Human Rights</h3>
+<p style="margin: 0; color: #33445A; font-size: 19px">Standing up for the dignity and freedom of every person, near and far, including people trapped in modern slavery and exploitation.</p>
+<div style="border-left: 4px solid #2B7F8C; background: #F6F9FC; border-radius: 0 12px 12px 0; padding: 14px 18px">
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: #4A5A6E">One step you can take</p>
+<p style="margin: 4px 0 0; color: #1A2433">Learn the signs of exploitation and how to report a concern.</p>
 </div>
-<div style="border: 1px solid #2D4D70; border-radius: 14px; padding: 18px; display: flex; gap: 12px; align-items: baseline">
-<span style="font-family: 'Marcellus', serif; color: #F2C66D; font-size: 20px">02</span>
-<span style="color: #FFFFFF">[Community]</span>
 </div>
-<div style="border: 1px solid #2D4D70; border-radius: 14px; padding: 18px; display: flex; gap: 12px; align-items: baseline">
-<span style="font-family: 'Marcellus', serif; color: #F2C66D; font-size: 20px">03</span>
-<span style="color: #FFFFFF">[Education]</span>
 </div>
-<div style="border: 1px solid #2D4D70; border-radius: 14px; padding: 18px; display: flex; gap: 12px; align-items: baseline">
-<span style="font-family: 'Marcellus', serif; color: #F2C66D; font-size: 20px">04</span>
-<span style="color: #FFFFFF">[Work and business]</span>
+<div data-panel="family" hidden>
+<div class="sphpanel-in" style="display: flex; flex-direction: column; gap: 16px">
+<span style="width: 88px; height: 88px; border-radius: 999px; background: #D9662A; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="7" r="3"></circle><circle cx="16.5" cy="8.5" r="2.5"></circle><path d="M3 20v-2a5 5 0 0 1 10 0v2"></path><path d="M14 20v-1.5a3.5 3.5 0 0 1 7 0V20"></path></svg></span>
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: #4A5A6E; font-weight: 700">Sphere 02 of 12</p>
+<h3 style="margin: -8px 0 0; font-family: 'Marcellus', serif; font-weight: 400; font-size: 36px; line-height: 1.15; color: #12304F">Family</h3>
+<p style="margin: 0; color: #33445A; font-size: 19px">Where values are first learnt and lived. A home can be a place of safety, belonging and kindness, where children learn to care about others.</p>
+<div style="border-left: 4px solid #D9662A; background: #F6F9FC; border-radius: 0 12px 12px 0; padding: 14px 18px">
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: #4A5A6E">One step you can take</p>
+<p style="margin: 4px 0 0; color: #1A2433">Talk together about fairness, and about where the things you buy come from.</p>
 </div>
-<div style="border: 1px solid #2D4D70; border-radius: 14px; padding: 18px; display: flex; gap: 12px; align-items: baseline">
-<span style="font-family: 'Marcellus', serif; color: #F2C66D; font-size: 20px">05</span>
-<span style="color: #FFFFFF">[Faith]</span>
 </div>
-<div style="border: 1px solid #2D4D70; border-radius: 14px; padding: 18px; display: flex; gap: 12px; align-items: baseline">
-<span style="font-family: 'Marcellus', serif; color: #F2C66D; font-size: 20px">06</span>
-<span style="color: #FFFFFF">[Health]</span>
 </div>
-<div style="border: 1px solid #2D4D70; border-radius: 14px; padding: 18px; display: flex; gap: 12px; align-items: baseline">
-<span style="font-family: 'Marcellus', serif; color: #F2C66D; font-size: 20px">07</span>
-<span style="color: #FFFFFF">[Media]</span>
+<div data-panel="community" hidden>
+<div class="sphpanel-in" style="display: flex; flex-direction: column; gap: 16px">
+<span style="width: 88px; height: 88px; border-radius: 999px; background: #3F8A3F; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3"></circle><circle cx="5" cy="9" r="2"></circle><circle cx="19" cy="9" r="2"></circle><path d="M7 20v-2a5 5 0 0 1 10 0v2"></path><path d="M2 19v-1a3 3 0 0 1 4-2.8"></path><path d="M22 19v-1a3 3 0 0 0-4-2.8"></path></svg></span>
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: #4A5A6E; font-weight: 700">Sphere 03 of 12</p>
+<h3 style="margin: -8px 0 0; font-family: 'Marcellus', serif; font-weight: 400; font-size: 36px; line-height: 1.15; color: #12304F">Community</h3>
+<p style="margin: 0; color: #33445A; font-size: 19px">Neighbourhoods, churches and local groups where we meet, welcome and look out for one another.</p>
+<div style="border-left: 4px solid #3F8A3F; background: #F6F9FC; border-radius: 0 12px 12px 0; padding: 14px 18px">
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: #4A5A6E">One step you can take</p>
+<p style="margin: 4px 0 0; color: #1A2433">Get to know someone new in your area, especially someone who may be isolated.</p>
 </div>
-<div style="border: 1px solid #2D4D70; border-radius: 14px; padding: 18px; display: flex; gap: 12px; align-items: baseline">
-<span style="font-family: 'Marcellus', serif; color: #F2C66D; font-size: 20px">08</span>
-<span style="color: #FFFFFF">[Arts and culture]</span>
 </div>
-<div style="border: 1px solid #2D4D70; border-radius: 14px; padding: 18px; display: flex; gap: 12px; align-items: baseline">
-<span style="font-family: 'Marcellus', serif; color: #F2C66D; font-size: 20px">09</span>
-<span style="color: #FFFFFF">[Government]</span>
 </div>
-<div style="border: 1px solid #2D4D70; border-radius: 14px; padding: 18px; display: flex; gap: 12px; align-items: baseline">
-<span style="font-family: 'Marcellus', serif; color: #F2C66D; font-size: 20px">10</span>
-<span style="color: #FFFFFF">[Environment]</span>
+<div data-panel="education" hidden>
+<div class="sphpanel-in" style="display: flex; flex-direction: column; gap: 16px">
+<span style="width: 88px; height: 88px; border-radius: 999px; background: #1D4A68; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h6a4 4 0 0 1 4 4v11a3 3 0 0 0-3-3H2z"></path><path d="M22 5h-6a4 4 0 0 0-4 4v11a3 3 0 0 1 3-3h7z"></path></svg></span>
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: #4A5A6E; font-weight: 700">Sphere 04 of 12</p>
+<h3 style="margin: -8px 0 0; font-family: 'Marcellus', serif; font-weight: 400; font-size: 36px; line-height: 1.15; color: #12304F">Education &amp; Learning</h3>
+<p style="margin: 0; color: #33445A; font-size: 19px">Schools, colleges and lifelong learning shape how people see the world and their own part in it.</p>
+<div style="border-left: 4px solid #1D4A68; background: #F6F9FC; border-radius: 0 12px 12px 0; padding: 14px 18px">
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: #4A5A6E">One step you can take</p>
+<p style="margin: 4px 0 0; color: #1A2433">Invite Haven of Light to run a session with your class or group.</p>
 </div>
-<div style="border: 1px solid #2D4D70; border-radius: 14px; padding: 18px; display: flex; gap: 12px; align-items: baseline">
-<span style="font-family: 'Marcellus', serif; color: #F2C66D; font-size: 20px">11</span>
-<span style="color: #FFFFFF">[Travel]</span>
 </div>
-<div style="border: 1px solid #2D4D70; border-radius: 14px; padding: 18px; display: flex; gap: 12px; align-items: baseline">
-<span style="font-family: 'Marcellus', serif; color: #F2C66D; font-size: 20px">12</span>
-<span style="color: #FFFFFF">[Leisure]</span>
+</div>
+<div data-panel="medicine" hidden>
+<div class="sphpanel-in" style="display: flex; flex-direction: column; gap: 16px">
+<span style="width: 88px; height: 88px; border-radius: 999px; background: #B83A2E; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"></path></svg></span>
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: #4A5A6E; font-weight: 700">Sphere 05 of 12</p>
+<h3 style="margin: -8px 0 0; font-family: 'Marcellus', serif; font-weight: 400; font-size: 36px; line-height: 1.15; color: #12304F">Medicine &amp; Healthcare</h3>
+<p style="margin: 0; color: #33445A; font-size: 19px">Health workers often meet people no one else sees, including victims of exploitation. Good care is a right for everyone.</p>
+<div style="border-left: 4px solid #B83A2E; background: #F6F9FC; border-radius: 0 12px 12px 0; padding: 14px 18px">
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: #4A5A6E">One step you can take</p>
+<p style="margin: 4px 0 0; color: #1A2433">If you work in healthcare, learn the referral routes for suspected exploitation.</p>
+</div>
+</div>
+</div>
+<div data-panel="sport" hidden>
+<div class="sphpanel-in" style="display: flex; flex-direction: column; gap: 16px">
+<span style="width: 88px; height: 88px; border-radius: 999px; background: #B7860F; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5l4 2.9-1.5 4.6h-5L8 10.4z"></path><path d="M12 3v4.5M20.5 9.5l-4.5.9M3.5 9.5l4.5.9M7 19.5l2.5-4.5M17 19.5l-2.5-4.5"></path></svg></span>
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: #4A5A6E; font-weight: 700">Sphere 06 of 12</p>
+<h3 style="margin: -8px 0 0; font-family: 'Marcellus', serif; font-weight: 400; font-size: 36px; line-height: 1.15; color: #12304F">Sport &amp; Leisure</h3>
+<p style="margin: 0; color: #33445A; font-size: 19px">Teams, clubs and free time build friendship, confidence and fair play, and can include people who are often left out.</p>
+<div style="border-left: 4px solid #B7860F; background: #F6F9FC; border-radius: 0 12px 12px 0; padding: 14px 18px">
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: #4A5A6E">One step you can take</p>
+<p style="margin: 4px 0 0; color: #1A2433">Ask how your club could welcome newcomers and refugees.</p>
+</div>
+</div>
+</div>
+<div data-panel="arts" hidden>
+<div class="sphpanel-in" style="display: flex; flex-direction: column; gap: 16px">
+<span style="width: 88px; height: 88px; border-radius: 999px; background: #74449A; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.5 0 2-1 2-2s-1-1.5-1-2.5 1-1.5 2-1.5h2a4 4 0 0 0 4-4c0-4.5-4-8-9-8z"></path><circle cx="7.5" cy="11" r="1"></circle><circle cx="10" cy="7" r="1"></circle><circle cx="15" cy="7.5" r="1"></circle></svg></span>
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: #4A5A6E; font-weight: 700">Sphere 07 of 12</p>
+<h3 style="margin: -8px 0 0; font-family: 'Marcellus', serif; font-weight: 400; font-size: 36px; line-height: 1.15; color: #12304F">Arts &amp; Entertainment</h3>
+<p style="margin: 0; color: #33445A; font-size: 19px">Stories, music and art move hearts and help us understand lives very different from our own.</p>
+<div style="border-left: 4px solid #74449A; background: #F6F9FC; border-radius: 0 12px 12px 0; padding: 14px 18px">
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: #4A5A6E">One step you can take</p>
+<p style="margin: 4px 0 0; color: #1A2433">Use a film, song or poem to start a conversation about justice.</p>
+</div>
+</div>
+</div>
+<div data-panel="environment" hidden>
+<div class="sphpanel-in" style="display: flex; flex-direction: column; gap: 16px">
+<span style="width: 88px; height: 88px; border-radius: 999px; background: #3F8A3F; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20c0-8 5-14 15-15-1 10-6 15-14 15"></path><path d="M5 20c3-4 6-7 10-9"></path></svg></span>
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: #4A5A6E; font-weight: 700">Sphere 08 of 12</p>
+<h3 style="margin: -8px 0 0; font-family: 'Marcellus', serif; font-weight: 400; font-size: 36px; line-height: 1.15; color: #12304F">Environment</h3>
+<p style="margin: 0; color: #33445A; font-size: 19px">Caring for creation, and for the people hit hardest when land, water and climate are damaged.</p>
+<div style="border-left: 4px solid #3F8A3F; background: #F6F9FC; border-radius: 0 12px 12px 0; padding: 14px 18px">
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: #4A5A6E">One step you can take</p>
+<p style="margin: 4px 0 0; color: #1A2433">Choose products that respect both people and planet.</p>
+</div>
+</div>
+</div>
+<div data-panel="government" hidden>
+<div class="sphpanel-in" style="display: flex; flex-direction: column; gap: 16px">
+<span style="width: 88px; height: 88px; border-radius: 999px; background: #1D4A68; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"></path><path d="M5 10v8M9.5 10v8M14.5 10v8M19 10v8"></path><path d="M3 21h18"></path></svg></span>
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: #4A5A6E; font-weight: 700">Sphere 09 of 12</p>
+<h3 style="margin: -8px 0 0; font-family: 'Marcellus', serif; font-weight: 400; font-size: 36px; line-height: 1.15; color: #12304F">Government &amp; State</h3>
+<p style="margin: 0; color: #33445A; font-size: 19px">Laws, policies and public services that protect rights and hold power to account.</p>
+<div style="border-left: 4px solid #1D4A68; background: #F6F9FC; border-radius: 0 12px 12px 0; padding: 14px 18px">
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: #4A5A6E">One step you can take</p>
+<p style="margin: 4px 0 0; color: #1A2433">Write to your MS or MP about an issue you care about.</p>
+</div>
+</div>
+</div>
+<div data-panel="media" hidden>
+<div class="sphpanel-in" style="display: flex; flex-direction: column; gap: 16px">
+<span style="width: 88px; height: 88px; border-radius: 999px; background: #D9662A; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 3l4 4 4-4"></path></svg></span>
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: #4A5A6E; font-weight: 700">Sphere 10 of 12</p>
+<h3 style="margin: -8px 0 0; font-family: 'Marcellus', serif; font-weight: 400; font-size: 36px; line-height: 1.15; color: #12304F">Communication &amp; Media</h3>
+<p style="margin: 0; color: #33445A; font-size: 19px">What we read, watch and share shapes how we see others. Media can expose injustice or spread prejudice.</p>
+<div style="border-left: 4px solid #D9662A; background: #F6F9FC; border-radius: 0 12px 12px 0; padding: 14px 18px">
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: #4A5A6E">One step you can take</p>
+<p style="margin: 4px 0 0; color: #1A2433">Check your sources, and share stories that build understanding.</p>
+</div>
+</div>
+</div>
+<div data-panel="economics" hidden>
+<div class="sphpanel-in" style="display: flex; flex-direction: column; gap: 16px">
+<span style="width: 88px; height: 88px; border-radius: 999px; background: #1F6B4A; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"></path><path d="M7 17v-3M11 17v-5M15 17v-4M19 17v-7"></path><path d="M4 10l5-4 4 3 6-5"></path><path d="M16 4h3v3"></path></svg></span>
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: #4A5A6E; font-weight: 700">Sphere 11 of 12</p>
+<h3 style="margin: -8px 0 0; font-family: 'Marcellus', serif; font-weight: 400; font-size: 36px; line-height: 1.15; color: #12304F">Economics &amp; Business</h3>
+<p style="margin: 0; color: #33445A; font-size: 19px">Work, wages and supply chains. Business can lift people out of poverty, or exploit them.</p>
+<div style="border-left: 4px solid #1F6B4A; background: #F6F9FC; border-radius: 0 12px 12px 0; padding: 14px 18px">
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: #4A5A6E">One step you can take</p>
+<p style="margin: 4px 0 0; color: #1A2433">Ask the companies you buy from how they keep forced labour out of their supply chains.</p>
+</div>
+</div>
+</div>
+<div data-panel="science" hidden>
+<div class="sphpanel-in" style="display: flex; flex-direction: column; gap: 16px">
+<span style="width: 88px; height: 88px; border-radius: 999px; background: #2B7F8C; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1.5"></circle><ellipse cx="12" cy="12" rx="10" ry="4"></ellipse><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"></ellipse><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"></ellipse></svg></span>
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: #4A5A6E; font-weight: 700">Sphere 12 of 12</p>
+<h3 style="margin: -8px 0 0; font-family: 'Marcellus', serif; font-weight: 400; font-size: 36px; line-height: 1.15; color: #12304F">Science &amp; Technology</h3>
+<p style="margin: 0; color: #33445A; font-size: 19px">Innovation solves problems, but technology can also be misused, including for online grooming and trafficking.</p>
+<div style="border-left: 4px solid #2B7F8C; background: #F6F9FC; border-radius: 0 12px 12px 0; padding: 14px 18px">
+<p style="margin: 0; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: #4A5A6E">One step you can take</p>
+<p style="margin: 4px 0 0; color: #1A2433">Learn how to stay safe online, and help young people do the same.</p>
+</div>
+</div>
+</div>
+</div>
+<a href="#book" style="align-self: flex-start; text-decoration: none; background: #12304F; color: #FFFFFF; font-weight: 700; padding: 14px 24px; border-radius: 999px">Explore the spheres with your group</a>
 </div>
 </div>
 </div>
@@ -227,6 +400,7 @@ a{color:#12304F}a:hover{color:#0A1F36}
 <h2 style="margin: 0; font-family: 'Marcellus', serif; font-weight: 400; font-size: 44px; color: #12304F; line-height: 1.15">Book a speaker</h2>
 <p style="margin: 16px 0 0; color: #33445A">Tell us a little about your group and we'll get back to you to plan a session. We speak in person across North Wales and online.</p>
 <p style="margin: 20px 0 0; color: #33445A">Prefer to talk? <a href="tel:+447929777347" style="font-weight: 700">+44 7929 777347</a><br>or <a href="mailto:hello@havenoflight.co.uk" style="font-weight: 700">hello@havenoflight.co.uk</a></p>
+<img src="images/ali-ussery.jpg" alt="Ali Ussery speaking at an event" style="display: block; margin-top: 32px; width: 100%; max-width: 360px; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 20px">
 </div>
 <form id="book-form" style="flex: 2 1 560px; min-width: 0; background: #FFFFFF; border-radius: 22px; padding: 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px">
 <label style="display: flex; flex-direction: column; gap: 6px; font-weight: 700; color: #12304F; font-size: 16px">Your name<input name="name" type="text" style="font: inherit; font-weight: 400; padding: 12px 14px; border: 1px solid #9FB4CA; border-radius: 10px; min-height: 48px; box-sizing: border-box"></label>
@@ -270,6 +444,21 @@ document.getElementById('book-form').addEventListener('submit', e => {
   const body = ['Name: ' + f.get('name'), 'Email: ' + f.get('email'), 'Group: ' + f.get('group'), 'Preferred date: ' + f.get('date'), 'Topic: ' + f.get('topic'), 'Group size and ages: ' + f.get('size'), '', f.get('notes')].join('\n');
   location.href = 'mailto:hello@havenoflight.co.uk?subject=' + encodeURIComponent('Speaker request: ' + f.get('group')) + '&body=' + encodeURIComponent(body);
 });
+</script>
+<script>
+(function () {
+  const panel = document.getElementById('sph-panel');
+  function show(k, scroll) {
+    document.querySelectorAll('.sph').forEach(b => b.setAttribute('aria-pressed', b.dataset.k === k ? 'true' : 'false'));
+    panel.querySelectorAll('[data-panel]').forEach(p => { p.hidden = p.dataset.panel !== k; });
+    if (scroll && window.innerWidth < 760) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  document.querySelectorAll('.sph, .sphcore').forEach(b => {
+    b.addEventListener('mouseenter', () => { if (window.matchMedia('(hover: hover)').matches) show(b.dataset.k); });
+    b.addEventListener('focus', () => show(b.dataset.k));
+    b.addEventListener('click', () => show(b.dataset.k, true));
+  });
+})();
 </script>
 </body>
 </html>
