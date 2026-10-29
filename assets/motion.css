@@ -1,0 +1,50 @@
+/* Haven of Light – homepage motion. All motion is switched off for people who ask for reduced motion. */
+
+/* 1. Hero: parallax photo layer + load-in + scroll fade */
+.hero-photo { position: relative; overflow: hidden; }
+.hero-bg {
+  position: absolute; left: 0; right: 0; top: 0; height: 115%;
+  background-image: linear-gradient(180deg, rgba(11, 33, 57, 0) 0%, rgba(11, 33, 57, 0.35) 100%), url('../images/child-pointing-silhouette.jpg');
+  background-size: cover; background-position: 30% 40%;
+  will-change: transform;
+}
+.hero-inner { position: relative; z-index: 1; will-change: opacity, transform; }
+.hero-box { animation: hol-box-in 0.9s cubic-bezier(.2, .7, .2, 1) 0.1s both; }
+.hero-box > * { animation: hol-rise 0.8s cubic-bezier(.2, .7, .2, 1) both; }
+.hero-box > :nth-child(1) { animation-delay: 0.25s; }
+.hero-box > :nth-child(2) { animation-delay: 0.35s; }
+.hero-box > :nth-child(3) { animation-delay: 0.5s; }
+.hero-box > :nth-child(4) { animation-delay: 0.65s; }
+@keyframes hol-box-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+@keyframes hol-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* 2. Scroll-triggered reveals (classes are added by motion.js, so the page still shows everything without JavaScript) */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2, .7, .2, 1); transition-delay: var(--d, 0s); }
+.reveal.in { opacity: 1; transform: none; }
+.reveal-img { opacity: 0; transform: scale(0.97); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.2, .7, .2, 1); }
+.reveal-img.in { opacity: 1; transform: none; }
+
+/* 3. Hover */
+header nav a:not(.btn) { transition: color 0.25s ease; }
+header nav a:not(.btn):hover { color: #2F6FAE !important; }
+footer a { transition: color 0.25s ease; }
+footer a:hover { color: #9CC8F0 !important; }
+.btn { transition: transform 0.25s ease, filter 0.25s ease, box-shadow 0.25s ease; }
+.btn:hover { transform: translateY(-2px); filter: brightness(1.07); box-shadow: 0 8px 18px rgba(11, 33, 57, 0.18); }
+.btn.btn-ghost-light:hover { box-shadow: inset 0 0 0 999px rgba(255, 255, 255, 0.12), 0 8px 18px rgba(0, 0, 0, 0.18); }
+.btn.btn-ghost-dark:hover { box-shadow: inset 0 0 0 999px rgba(18, 48, 79, 0.07), 0 8px 18px rgba(11, 33, 57, 0.12); }
+.card-link { transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease; }
+.card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(11, 33, 57, 0.14); }
+
+/* Phones: photo strip above the text box; no parallax */
+@media (max-width: 760px) {
+  .hero-bg { height: 320px !important; background-position: 32% 35% !important; transform: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-box, .hero-box > * { animation: none !important; }
+  .hero-bg, .hero-inner { transform: none !important; opacity: 1 !important; }
+  .reveal, .reveal-img { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .btn, .card-link { transition: none !important; }
+  .btn:hover, .card-link:hover { transform: none !important; }
+}

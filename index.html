@@ -20,8 +20,10 @@ a{color:#12304F}a:hover{color:#0A1F36}
 .amt{font-family:'Marcellus',serif;font-size:28px;border-radius:16px;min-height:64px;padding:16px}
 .seg{border:none;background:transparent;padding:12px}
 .pill:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #F2B544;outline-offset:2px}
-@media (max-width:760px){.hero-photo{background-size:100% 320px,auto 320px !important;background-repeat:no-repeat !important;background-position:0 0,32% 0 !important}.hero-photo>div{min-height:0 !important;padding:320px 0 0 !important}.hero-box{max-width:none !important;border-radius:0 !important;padding:32px 16px 40px !important}.hero-box h1{font-size:38px !important}.hero-learn{background-image:linear-gradient(180deg,rgba(0,0,0,0) 0px,rgba(0,0,0,0) 240px,#000000 420px),var(--learn-img) !important;background-size:100% 100%,auto 420px !important;background-repeat:no-repeat;background-position:0 0,20% top !important}.hero-learn>div{padding-top:340px !important;padding-bottom:56px !important;min-height:0 !important}.photo-band p:nth-child(2){font-size:34px !important}}
+@media (max-width:760px){.hero-photo>.hero-inner{min-height:0 !important;padding:320px 0 0 !important}.hero-box{max-width:none !important;border-radius:0 !important;padding:32px 16px 40px !important}.hero-box h1{font-size:38px !important}.hero-learn{background-image:linear-gradient(180deg,rgba(0,0,0,0) 0px,rgba(0,0,0,0) 240px,#000000 420px),var(--learn-img) !important;background-size:100% 100%,auto 420px !important;background-repeat:no-repeat;background-position:0 0,20% top !important}.hero-learn>div{padding-top:340px !important;padding-bottom:56px !important;min-height:0 !important}.photo-band p:nth-child(2){font-size:34px !important}}
 </style>
+<link rel="stylesheet" href="assets/motion.css">
+<script src="assets/motion.js" defer></script>
 </head>
 <body>
 <div style="font-family: 'Source Sans 3', system-ui, sans-serif; color: #1A2433; background: #FFFFFF; font-size: 18px; line-height: 1.6">
@@ -47,8 +49,9 @@ a{color:#12304F}a:hover{color:#0A1F36}
 </div>
 </header>
 
-<section class="hero-photo" role="img" aria-label="Silhouette of a child pointing towards the light at sunset" style="color: #FFFFFF; background-color: #12304F; background-image: linear-gradient(180deg, rgba(11, 33, 57, 0) 0%, rgba(11, 33, 57, 0.35) 100%), url('images/child-pointing-silhouette.jpg'); background-size: cover; background-position: 30% 45%">
-<div style="max-width: 1240px; margin: 0 auto; padding: 120px 24px 72px; min-height: 680px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-end">
+<section class="hero-photo" style="color: #FFFFFF; background-color: #12304F">
+<div class="hero-bg" role="img" aria-label="Silhouette of a child pointing towards the light at sunset"></div>
+<div class="hero-inner" style="max-width: 1240px; margin: 0 auto; padding: 120px 24px 72px; min-height: 680px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-end">
 <div class="hero-box" style="max-width: 500px; background: rgba(18, 48, 79, 0.94); border-radius: 20px; padding: 40px">
 <p style="margin: 0 0 16px; font-size: 15px; letter-spacing: 0.16em; text-transform: uppercase; color: #F2C66D; font-weight: 700">North Wales · Local and global</p>
 <h1 style="margin: 0; font-family: 'Marcellus', serif; font-weight: 400; font-size: 46px; line-height: 1.1; letter-spacing: 0.01em">A light for freedom, dignity and justice.</h1>
